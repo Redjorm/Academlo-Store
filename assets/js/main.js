@@ -39,7 +39,7 @@ function menu () {
   })
 
   window.addEventListener('scroll', function () {
-    if (window.scrollY > 200) {
+    if (window.scrollY > 50) {
       headerHTML.classList.add('header_active')
     } else {
       headerHTML.classList.remove('header_active')
@@ -90,8 +90,9 @@ function printProducts (db) {
         
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
-            <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
+            
         </div>
+        <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
         <div class="product_item_info">
             <h3>$ ${product.price} <span>Stock: ${product.quantity}</span></h3> 
             <p>${product.name}</p>
@@ -100,6 +101,37 @@ function printProducts (db) {
   }
 
   productsHTML.innerHTML = html
+}
+
+function addCart (db) {
+  const productsItemsHTML = document.querySelector('.products_items')
+
+  productsItemsHTML.addEventListener('click', function (e) {
+    if (e.target.classList.contains('bx-plus')) {
+      const id = Number(e.target.id)
+
+      let productFind = null
+
+      for (const product of db.products) {
+        if (product.id === id) {
+          productFind = product
+          break
+        }
+      }
+
+      if (db.cart[productFind.id]) {
+        if (productFind.quantity === db.cart[productFind.id].amount) {
+          return alert('No hay más disponibilidad del producto.')
+        } else {
+          db.cart[productFind.id].amount++
+        }
+      } else {
+        db.cart[productFind.id] = { ...productFind, amount: 1 }
+      }
+
+      window.localStorage.setItem('cart', JSON.stringify(db.cart))
+    }
+  })
 }
 
 async function main () {
@@ -117,10 +149,12 @@ async function main () {
     products:
       JSON.parse(window.localStorage.getItem('products')) ||
       (await getProducts()),
-    cart: {}
+    cart: JSON.parse(window.localStorage.getItem('cart')) || {}
   }
 
   printProducts(db)
+
+  addCart(db)
 }
 
 main()
