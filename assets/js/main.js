@@ -1,26 +1,3 @@
-function menu () {
-  const iconMenuHTML = document.querySelector('.bxs-dashboard')
-  const headerHTML = document.querySelector('.header')
-  const navbarUlHTML = document.querySelector('.navbar__ul')
-  const logoHTML = document.querySelector('.logo')
-  const moonIconHTML = document.querySelector('.bx-moon')
-
-  iconMenuHTML.addEventListener('click', function () {
-    navbarUlHTML.classList.toggle('navbar_ul_show')
-    headerHTML.classList.toggle('header_show')
-    logoHTML.classList.toggle('logo_show')
-    moonIconHTML.classList.toggle('logo_show')
-  })
-
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 250) {
-      headerHTML.classList.add('header_active')
-    } else {
-      headerHTML.classList.remove('header_active')
-    }
-  })
-}
-
 function darkMode () {
   const moonIconHTML = document.querySelector('.bx-moon')
   const bodyHTML = document.querySelector('body')
@@ -47,6 +24,47 @@ function saveDarkMode () {
   }
 }
 
+function menu () {
+  const iconMenuHTML = document.querySelector('.bxs-dashboard')
+  const headerHTML = document.querySelector('.header')
+  const navbarUlHTML = document.querySelector('.navbar__ul')
+  const logoHTML = document.querySelector('.logo')
+  const moonIconHTML = document.querySelector('.bx-moon')
+
+  iconMenuHTML.addEventListener('click', function () {
+    navbarUlHTML.classList.toggle('navbar_ul_show')
+    headerHTML.classList.toggle('header_show')
+    logoHTML.classList.toggle('logo_show')
+    moonIconHTML.classList.toggle('logo_show')
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 200) {
+      headerHTML.classList.add('header_active')
+    } else {
+      headerHTML.classList.remove('header_active')
+    }
+  })
+}
+
+function showCart () {
+  const iconCartHTML = document.querySelector('.bx-shopping-bag')
+  const cartHTML = document.querySelector('.cart')
+
+  iconCartHTML.addEventListener('click', function () {
+    cartHTML.classList.toggle('cart_show')
+  })
+}
+
+function closeCart () {
+  const iconWindowCloseHTML = document.querySelector('.bx-window-close')
+  const cartHTML = document.querySelector('.cart')
+
+  iconWindowCloseHTML.addEventListener('click', function () {
+    cartHTML.classList.toggle('cart_show')
+  })
+}
+
 async function getProducts () {
   try {
     const data = await fetch('https://ecommercebackend.fundamentos-29.repl.co/')
@@ -69,14 +87,14 @@ function printProducts (db) {
   for (const product of db.products) {
     html += `
     <div class="product_item">
+        
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
+            <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
         </div>
         <div class="product_item_info">
             <h3>$ ${product.price} <span>Stock: ${product.quantity}</span></h3> 
-            <p>${product.name}
-            <i class='bx bx-plus' id='${product.id}'></i>
-            </p>
+            <p>${product.name}</p>
         </div>
     </div>`
   }
@@ -88,7 +106,12 @@ async function main () {
   menu()
 
   darkMode()
+
   saveDarkMode()
+
+  showCart()
+
+  closeCart()
 
   const db = {
     products:
