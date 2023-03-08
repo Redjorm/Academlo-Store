@@ -338,11 +338,11 @@ img {
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
     height: 100vh;
-    width: 400px;
+    width: 100%;
     background-color: var(--bodyColor);
     position: fixed;
     top: 0px;
-    right: -100%;
+    right: -200%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -511,6 +511,10 @@ img {
 
     .products_items {
         padding: 0rem 4rem 4rem 4rem;
+    }
+
+    .cart {
+        width: 400px;
     }
 
     .footer {
