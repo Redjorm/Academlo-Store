@@ -95,14 +95,14 @@ function printProducts (db) {
   for (const product of db.products) {
     html += `
     <div class="product_item">
-        
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
-            
         </div>
         <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
         <div class="product_item_info">
-            <h3>$ ${product.price} <span>Stock: ${product.quantity}</span></h3> 
+            <h3>$ ${product.price.toFixed(2)} <span>Stock: ${
+      product.quantity
+    }</span></h3> 
             <p>${product.name}</p>
         </div>
     </div>`
@@ -138,9 +138,125 @@ function addCart (db) {
       }
 
       window.localStorage.setItem('cart', JSON.stringify(db.cart))
+      printProductsInCart(db)
+      cartTotal(db)
     }
   })
 }
+
+function printProductsInCart (db) {
+  const cartProductHTML = document.querySelector('.cart_products')
+
+  let html = ''
+
+  let total = 0
+
+  for (const product in db.cart) {
+    const { quantity, price, name, image, id, amount } = db.cart[product]
+
+    total = price * amount
+
+    html += `
+      <div class="card_product"> 
+          <div class="card_product_img">
+            <img src="${image}" alt="${name}"></img>
+          </div>
+          <div class="card_product_description">
+            <h3 class="card_product_description_title">${name}</h3>
+            <p class="card_product_description_stock">Stock:${quantity} | <span>$${price.toFixed(
+      2
+    )}</span> </p>
+            <p class="card_product_description_subtotal">Subtotal: $${total.toFixed(
+              2
+            )}</p>
+            <div class="card_product_description_unit_total" id="${id}">
+              <i class='bx bx-minus-circle' ></i>
+              <p>${amount} units</p>
+              <i class='bx bx-plus-circle' ></i>
+              <i class='bx bx-trash' ></i> 
+            </div>
+          </div>
+      </div>
+    `
+  }
+
+  cartProductHTML.innerHTML = html
+}
+
+function operationsInCart (db) {
+  const cartProductsHTML = document.querySelector('.cart_products')
+
+  cartProductsHTML.addEventListener('click', function (e) {
+    if (e.target.classList.contains('bx-minus-circle')) {
+      let id = Number(e.target.parentElement.id)
+      if (db.cart[id].amount === 1) {
+        const response = confirm('¿Desea quitar el producto del carrito?')
+
+        if (!response) return
+
+        delete db.cart[id]
+      } else {
+        db.cart[id].amount--
+      }
+    }
+
+    if (e.target.classList.contains('bx-plus-circle')) {
+      let id = Number(e.target.parentElement.id)
+
+      let productFind = null
+
+      for (const product of db.products) {
+        if (product.id === id) {
+          productFind = product
+          break
+        }
+      }
+
+      if (productFind.quantity === db.cart[productFind.id].amount) {
+        return alert('No hay más disponibilidad del producto.')
+      } else {
+        db.cart[id].amount++
+      }
+    }
+
+    if (e.target.classList.contains('bx-trash')) {
+      let id = Number(e.target.parentElement.id)
+      const response = confirm('¿Desea quitar el producto del carrito?')
+
+      if (!response) return
+
+      delete db.cart[id]
+    }
+    window.localStorage.setItem('cart', JSON.stringify(db.cart))
+    printProductsInCart(db)
+    cartTotal(db)
+  })
+}
+
+function cartTotal (db) {
+  const cartTotalInfoItemsHTML = document.querySelector(
+    '.cart_total_info_items'
+  )
+  const cartTotalInfoTotalHTML = document.querySelector(
+    '.cart_total_info_total'
+  )
+  const productsInCart = document.querySelector('.products_in_cart')
+
+  let totalProducts = 0
+  let amountProdutcs = 0
+
+  for (const item in db.cart) {
+    const { amount, price } = db.cart[item]
+    totalProducts += amount * price
+    amountProdutcs += amount
+  }
+
+  cartTotalInfoItemsHTML.textContent = amountProdutcs + ' Units'
+  productsInCart.textContent = amountProdutcs
+  cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
+}
+
+
 
 async function main () {
   preloader()
@@ -165,6 +281,14 @@ async function main () {
   printProducts(db)
 
   addCart(db)
+
+  printProductsInCart(db)
+
+  operationsInCart(db)
+
+  cartTotal(db)
+
+  
 }
 
 main()

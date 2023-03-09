@@ -194,7 +194,7 @@ img {
     position: relative;
 }
 
-.productsInCart {
+.products_in_cart {
     position: absolute;
     top: 12px;
     right: -5px;
@@ -410,13 +410,128 @@ img {
 
 
 .cart_products {
-    background-color: blue;
     height: 70%;
+    overflow-y: scroll;
+}
+
+.cart_products::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: var(--containerColor);
+}
+
+.cart_products::-webkit-scrollbar-thumb {
+    background: var(--primaryColor);
+    border-radius: 8px;
+}
+
+.card_product {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.card_product_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cardColor);
+    max-width: 600px;
+    height: 110px;
+    border: 2px solid var(--primaryColor);
+    border-radius: 1rem;
+
+}
+
+.card_product_description {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+}
+
+.card_product_img img {
+    width: 80px;
+}
+
+.card_product_description_title {
+    color: var(--titleColor);
+}
+
+.card_product_description_stock {
+    color: var(--textColorLight);
+    font-size: 14px;
+}
+
+.card_product_description_stock span {
+    color: var(--primaryColor);
+}
+
+.card_product_description_subtotal {
+    color: var(--primaryColor);
+    font-weight: lighter;
+}
+
+.card_product_description_unit_total {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--titleColor);
+}
+
+.card_product_description_unit_total i{
+    cursor: pointer;
+    
+}
+
+.bx-trash{
+    color: var(--primaryColor);
 }
 
 .cart_total {
-    background-color: red;
+    padding: 1rem;
     height: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cart_total_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart_total_info_items{
+    color: var(--textColorLight);
+    font-size: 12px;
+}
+
+.cart_total_info_trash{
+    color: var(--primaryColor);
+    cursor: pointer;
+    font-weight: 16px;
+}
+
+.cart_total_info_total{
+    color: var(--titleColor);
+    font-weight: bold;
+}
+
+.btn{
+    color: var(--bodyColor);
+    padding: 1rem;
+    border: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--buttonColor);
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.btn:hover{
+    background-color: var(--primaryColor);
 }
 
 .addCart {
@@ -515,7 +630,7 @@ img {
 }
 
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
     .navbar__ul {
         background-color: transparent;
         position: static;
