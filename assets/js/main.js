@@ -1,3 +1,11 @@
+function preloader () {
+  const preloaderHTML = document.querySelector('.preloader')
+
+  window.addEventListener('load', () => {
+    preloaderHTML.style.display = 'none'
+  })
+}
+
 function darkMode () {
   const moonIconHTML = document.querySelector('.bx-moon')
   const bodyHTML = document.querySelector('body')
@@ -135,6 +143,8 @@ function addCart (db) {
 }
 
 async function main () {
+  preloader()
+
   menu()
 
   darkMode()
