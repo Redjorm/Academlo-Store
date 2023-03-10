@@ -94,15 +94,15 @@ function printProducts (db) {
 
   for (const product of db.products) {
     html += `
-    <div class="product_item">
+    <div class="product_item ${product.category}">
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
         </div>
         <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
         <div class="product_item_info">
-            <h3>$ ${product.price.toFixed(2)} <span>Stock: ${
-      product.quantity
-    }</span></h3> 
+            <h3>$ ${product.price.toFixed(2)} 
+            ${ product.quantity ? `<span> Stock: ${ product.quantity} </span>` : '<span class="sold_out">SoldOut</span>'}
+            </h3> 
             <p>${product.name}</p>
         </div>
     </div>`
@@ -256,7 +256,45 @@ function cartTotal (db) {
   cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
 }
 
+function buy (db) {
+  const btnBuy = document.querySelector(".btn")
 
+  btnBuy.addEventListener('click', function(){
+
+    if (Object.values(db.cart).length === 0) {
+      alert('Añade algún producto a tu carrito.')
+    }else{
+      const response = confirm('¿Usted desea comprar los productos seleccionados?')
+      if (!response) return
+
+      const currentProducts = []
+
+      for (const product of db.products) {
+        const productCart = db.cart[product.id]
+
+        if (product.id === productCart?.id) {
+          currentProducts.push({
+            ...product,
+            quantity: product.quantity - productCart.amount,
+          })
+        } else {
+          currentProducts.push(product)
+        }
+      }
+
+      db.products = currentProducts;
+      db.cart = {}
+      
+
+      window.localStorage.setItem('products', JSON.stringify(db.products))
+      window.localStorage.setItem('cart', JSON.stringify(db.cart))
+      
+      printProducts(db)
+      printProductsInCart(db)
+
+    } 
+  })
+}
 
 async function main () {
   preloader()
@@ -288,6 +326,7 @@ async function main () {
 
   cartTotal(db)
 
+  buy(db)
   
 }
 

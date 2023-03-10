@@ -371,6 +371,18 @@ img {
     border-radius: 0rem 0rem 1rem 1rem;
 }
 
+.sold_out{
+    background-color: var(--primaryColor);
+    padding: .14rem 0.6rem;
+    border-radius: .2rem;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 10px;
+
+    color: var(--titleColor);
+}
+
+
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
     height: 100vh;
