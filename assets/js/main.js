@@ -94,7 +94,7 @@ function printProducts (db) {
 
   for (const product of db.products) {
     html += `
-    <div class="product_item ${product.category}">
+    <div class="product_item mix ${product.category}">
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
         </div>
@@ -234,6 +234,36 @@ function operationsInCart (db) {
   })
 }
 
+function filter(){
+  $(function(){
+    $('#Container').on('mixLoad', function() {
+      console.log('[event-handler] MixItUp Loaded');
+    });
+    
+    $('#Container').on('mixStart', function() {
+      console.log('[event-handler] Animation Started')
+    });
+    
+    $('#Container').on('mixEnd', function() {
+      console.log('[event-handler] Animation Ended')
+    });
+    
+    $('#Container').mixItUp({
+      callbacks: {
+        onMixLoad: function() {
+          console.log('[callback] MixItUp Loaded');
+        },
+        onMixStart: function() {
+          console.log('[callback] Animation Started');
+        },
+        onMixEnd: function() {
+          console.log('[callback] Animation Ended');
+        }
+      }
+    });
+  });
+}
+
 function cartTotal(db) {
   const cartTotalInfoItemsHTML = document.querySelector(
     '.cart_total_info_items'
@@ -290,9 +320,12 @@ function buy (db) {
       window.localStorage.setItem('products', JSON.stringify(db.products))
       window.localStorage.setItem('cart', JSON.stringify(db.cart))
       
+      location.reload()
+
       printProducts(db)
       printProductsInCart(db)
       cartTotal(db)
+      filter()
 
     } 
   })
@@ -330,6 +363,7 @@ async function main () {
 
   buy(db)
   
+  filter()
 }
 
 main()
