@@ -98,7 +98,8 @@ function printProducts (db) {
         <div class="product_item_img">
             <img src="${product.image}" alt="${product.name}">
         </div>
-        <div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>
+          ${ product.quantity ? `<div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>` : ""}
+
         <div class="product_item_info">
             <h3>$ ${product.price.toFixed(2)} 
             ${ product.quantity ? `<span> Stock: ${ product.quantity} </span>` : '<span class="sold_out">SoldOut</span>'}
@@ -233,7 +234,7 @@ function operationsInCart (db) {
   })
 }
 
-function cartTotal (db) {
+function cartTotal(db) {
   const cartTotalInfoItemsHTML = document.querySelector(
     '.cart_total_info_items'
   )
@@ -291,6 +292,7 @@ function buy (db) {
       
       printProducts(db)
       printProductsInCart(db)
+      cartTotal(db)
 
     } 
   })

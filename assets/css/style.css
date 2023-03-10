@@ -383,6 +383,8 @@ img {
 }
 
 
+
+
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
     height: 100vh;
@@ -546,16 +548,18 @@ img {
     background-color: var(--primaryColor);
 }
 
+.product_item{
+    position: relative;
+}
+
 .addCart {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    padding: 0rem 1rem;
+    position: absolute;
+    bottom: 100;
+    right: 0;
 }
 
 .addCart i {
     background-color: var(--bodyColor);
-    color: var(--titleColor);
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -567,7 +571,6 @@ img {
     box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
     -webkit-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
     -moz-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
-
 }
 
 .addCart i:hover {
