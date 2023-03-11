@@ -597,11 +597,13 @@ button.active {
 
 /* !<--------------------------------------- FOOTER ---------------------------------------> */
 .footer {
+    
     padding: 1rem;
     background-color: var(--cardColor);
 }
 
 .footer__content {
+    max-width: 1200px;
     padding: 4.5rem 0rem 4.5rem 2.8rem;
     display: flex;
     flex-direction: column;
@@ -730,7 +732,7 @@ button.active {
         flex-direction: row;
         justify-content: center;
         align-items: start;
-        gap: 12rem;
+        gap: 8rem;
     }
 
     .footer p {
