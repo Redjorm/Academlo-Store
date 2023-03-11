@@ -597,7 +597,9 @@ button.active {
 
 /* !<--------------------------------------- FOOTER ---------------------------------------> */
 .footer {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 1rem;
     background-color: var(--cardColor);
 }
@@ -648,11 +650,24 @@ button.active {
     gap: .5rem
 }
 
-.footer p {
+/* .footer p {
     background-color: var(--primaryColor);
     padding: 1rem;
-    text-align: center;
+    
+    
+    
+} */
+
+.footer__autor {
+    background-color: var(--primaryColor);
     color: var(--cardColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;  
+    gap: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
 }
@@ -735,10 +750,7 @@ button.active {
         gap: 8rem;
     }
 
-    .footer p {
-        background-color: var(--primaryColor);
-        font-size: 1.4rem;
-    }
+    
 
     /*  button {
         width: 60px;
