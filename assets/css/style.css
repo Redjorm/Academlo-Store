@@ -650,18 +650,12 @@ button.active {
     gap: .5rem
 }
 
-/* .footer p {
-    background-color: var(--primaryColor);
-    padding: 1rem;
-    
-    
-    
-} */
 
 .footer__autor {
     background-color: var(--primaryColor);
     color: var(--cardColor);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -750,13 +744,10 @@ button.active {
         gap: 8rem;
     }
 
-    
+    .footer__autor{
+        flex-direction: row;
+    }
 
-    /*  button {
-        width: 60px;
-        height: 40px;
-        color: var(--titleColor);
-        border: 0;
-    } */
+    
 
 }
