@@ -88,21 +88,29 @@ async function getProducts () {
 }
 
 function printProducts (db) {
-  const productsHTML = document.querySelector('.products_items')
+  const productsHTML = document.querySelector('.products__items')
 
   let html = ''
 
   for (const product of db.products) {
     html += `
-    <div class="product_item mix ${product.category}">
-        <div class="product_item_img">
+    <div class="product__item mix ${product.category}">
+        <div class="product__item-img">
             <img src="${product.image}" alt="${product.name}">
         </div>
-          ${ product.quantity ? `<div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>` : ""}
+          ${
+            product.quantity
+              ? `<div class="addCart"><i class='bx bx-plus' id='${product.id}'></i></div>`
+              : ''
+          }
 
-        <div class="product_item_info">
+        <div class="product__item-info">
             <h3>$ ${product.price.toFixed(2)} 
-            ${ product.quantity ? `<span> Stock: ${ product.quantity} </span>` : '<span class="sold_out">SoldOut</span>'}
+            ${
+              product.quantity
+                ? `<span> Stock: ${product.quantity} </span>`
+                : '<span class="sold__out">SoldOut</span>'
+            }
             </h3> 
             <p>${product.name}</p>
         </div>
@@ -113,7 +121,7 @@ function printProducts (db) {
 }
 
 function addCart (db) {
-  const productsItemsHTML = document.querySelector('.products_items')
+  const productsItemsHTML = document.querySelector('.products__items')
 
   productsItemsHTML.addEventListener('click', function (e) {
     if (e.target.classList.contains('bx-plus')) {
@@ -146,7 +154,7 @@ function addCart (db) {
 }
 
 function printProductsInCart (db) {
-  const cartProductHTML = document.querySelector('.cart_products')
+  const cartProductHTML = document.querySelector('.cart__products')
 
   let html = ''
 
@@ -158,19 +166,15 @@ function printProductsInCart (db) {
     total = price * amount
 
     html += `
-      <div class="card_product"> 
-          <div class="card_product_img">
+      <div class="card__product"> 
+          <div class="card__product-img">
             <img src="${image}" alt="${name}"></img>
           </div>
-          <div class="card_product_description">
-            <h3 class="card_product_description_title">${name}</h3>
-            <p class="card_product_description_stock">Stock:${quantity} | <span>$${price.toFixed(
-      2
-    )}</span> </p>
-            <p class="card_product_description_subtotal">Subtotal: $${total.toFixed(
-              2
-            )}</p>
-            <div class="card_product_description_unit_total" id="${id}">
+          <div class="card__product-description">
+            <h3 class="card__product-description-title">${name}</h3>
+            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(2)}</span> </p>
+            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(2)}</p>
+            <div class="card__product-description-unit-total" id="${id}">
               <i class='bx bx-minus-circle' ></i>
               <p>${amount} units</p>
               <i class='bx bx-plus-circle' ></i>
@@ -185,16 +189,14 @@ function printProductsInCart (db) {
 }
 
 function operationsInCart (db) {
-  const cartProductsHTML = document.querySelector('.cart_products')
+  const cartProductsHTML = document.querySelector('.cart__products')
 
   cartProductsHTML.addEventListener('click', function (e) {
     if (e.target.classList.contains('bx-minus-circle')) {
       let id = Number(e.target.parentElement.id)
       if (db.cart[id].amount === 1) {
         const response = confirm('¿Desea quitar el producto del carrito?')
-
         if (!response) return
-
         delete db.cart[id]
       } else {
         db.cart[id].amount--
@@ -234,37 +236,37 @@ function operationsInCart (db) {
   })
 }
 
-function filter(){
-  $(function(){
-    $('#Container').on('mixLoad', function() {
-      console.log('[event-handler] MixItUp Loaded');
-    });
-    
-    $('#Container').on('mixStart', function() {
+function filter () {
+  $(function () {
+    $('#Container').on('mixLoad', function () {
+      console.log('[event-handler] MixItUp Loaded')
+    })
+
+    $('#Container').on('mixStart', function () {
       console.log('[event-handler] Animation Started')
-    });
-    
-    $('#Container').on('mixEnd', function() {
+    })
+
+    $('#Container').on('mixEnd', function () {
       console.log('[event-handler] Animation Ended')
-    });
-    
+    })
+
     $('#Container').mixItUp({
       callbacks: {
-        onMixLoad: function() {
-          console.log('[callback] MixItUp Loaded');
+        onMixLoad: function () {
+          console.log('[callback] MixItUp Loaded')
         },
-        onMixStart: function() {
-          console.log('[callback] Animation Started');
+        onMixStart: function () {
+          console.log('[callback] Animation Started')
         },
-        onMixEnd: function() {
-          console.log('[callback] Animation Ended');
+        onMixEnd: function () {
+          console.log('[callback] Animation Ended')
         }
       }
-    });
-  });
+    })
+  })
 }
 
-function cartTotal(db) {
+function cartTotal (db) {
   const cartTotalInfoItemsHTML = document.querySelector(
     '.cart_total_info_items'
   )
@@ -288,14 +290,15 @@ function cartTotal(db) {
 }
 
 function buy (db) {
-  const btnBuy = document.querySelector(".btn")
+  const btnBuy = document.querySelector('.btn')
 
-  btnBuy.addEventListener('click', function(){
-
+  btnBuy.addEventListener('click', function () {
     if (Object.values(db.cart).length === 0) {
       alert('Añade algún producto a tu carrito.')
-    }else{
-      const response = confirm('¿Usted desea comprar los productos seleccionados?')
+    } else {
+      const response = confirm(
+        '¿Usted desea comprar los productos seleccionados?'
+      )
       if (!response) return
 
       const currentProducts = []
@@ -306,28 +309,26 @@ function buy (db) {
         if (product.id === productCart?.id) {
           currentProducts.push({
             ...product,
-            quantity: product.quantity - productCart.amount,
+            quantity: product.quantity - productCart.amount
           })
         } else {
           currentProducts.push(product)
         }
       }
 
-      db.products = currentProducts;
+      db.products = currentProducts
       db.cart = {}
-      
 
       window.localStorage.setItem('products', JSON.stringify(db.products))
       window.localStorage.setItem('cart', JSON.stringify(db.cart))
-      
+
       location.reload()
 
       printProducts(db)
       printProductsInCart(db)
       cartTotal(db)
       filter()
-
-    } 
+    }
   })
 }
 
@@ -362,7 +363,7 @@ async function main () {
   cartTotal(db)
 
   buy(db)
-  
+
   filter()
 }
 

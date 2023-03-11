@@ -229,14 +229,14 @@ img {
     gap: 1.2rem
 }
 
-.presentation_header {
+.presentation__header {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 }
 
-.presentation_header_img {
+.presentation__header-img {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -246,36 +246,36 @@ img {
 }
 
 
-.presentation_header_img img {
+.presentation__header-img img {
     width: 274px;
 }
 
-.presentation_body {
+.presentation__body {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 }
 
-.presentation_body h2 {
+.presentation__body h2 {
     width: 65%;
     font-size: 36px;
     color: var(--titleColor);
 }
 
-.presentation_body_description {
+.presentation__body-description {
     width: 90%;
     font-size: 18px;
     color: var(--textColorLight);
 }
 
-.presentation_body_price {
+.presentation__body-price {
     font-size: 26px;
     font-weight: bold;
     color: var(--primaryColor);
 }
 
-.presentation_body a {
+.presentation__body a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,35 +288,36 @@ img {
     transition: background-color 0.5s;
 }
 
-.presentation_body a:hover {
+.presentation__body a:hover {
     background-color: var(--buttonColorHover);
 }
 
 /* HPL */
 
 button {
+    background-color: var(--bodyColor);
     width: 70px;
     height: 50px;
     color: var(--titleColor);
     border: 0;
     cursor: pointer;
+    font-weight: bold;
 }
 
 
-
- button.active {
-    background: var(--buttonColorHover);
+button.active {
+    background: var(--primaryColor);
     color: var(--bodyColor);
 }
 
- .container .mix {
+.container .mix {
     display: none;
     /* background-color: red */
 }
 
 
 /*! <--------------------------------------- filter ---------------------------------------> */
-.products_filter {
+.products__filter-controllers {
     padding: 4rem;
     display: flex;
     flex-direction: column;
@@ -325,17 +326,13 @@ button {
     gap: 2rem;
 }
 
-.products_filter1 {
+.product__filter-division {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
 }
 
-.products_filter2 {
-    display: flex;
-    gap: 2rem;
-}
 
-.filter_controls {
+.product__filter {
     width: 150px;
     display: flex;
     flex-direction: column;
@@ -343,18 +340,13 @@ button {
     align-items: center;
 }
 
-.filter_title {
-    font-weight: bold;
-    color: var(--titleColor);
-}
 
-.filter_subtitle {
+.predocut__filter-subtitle {
     font-size: 12px;
-    color: var(--textColorLight);
 }
 
 /*! <--------------------------------------- products ---------------------------------------> */
-.products_items {
+.products__items {
     padding: 2rem;
     max-width: 1200px;
     display: grid;
@@ -363,29 +355,29 @@ button {
     gap: 2rem;
 }
 
-.product_item {
+.product__item {
     background-color: var(--cardColor);
     border-radius: 1rem;
 
 }
 
-.product_item_img {
+.product__item-img {
     padding: 0.5rem;
 
 }
 
-.product_item_img img {
+.product__item-img img {
     width: 100%;
     transition: transform 0.5s;
     z-index: 1000;
 }
 
-.product_item_img img:hover {
+.product__item-img img:hover {
     transform: translate(0, -15px);
 
 }
 
-.product_item_info {
+.product__item-info {
     background-color: var(--containerColor);
     color: var(--titleColor);
     height: 100px;
@@ -393,7 +385,7 @@ button {
     border-radius: 0rem 0rem 1rem 1rem;
 }
 
-.sold_out {
+.sold__out {
     background-color: var(--primaryColor);
     padding: .14rem 0.6rem;
     border-radius: .2rem;
@@ -430,7 +422,7 @@ button {
 
 }
 
-.icon_close {
+.icon__close {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -440,35 +432,35 @@ button {
 
 }
 
-.icon_close i {
+.icon__close i {
     cursor: pointer;
 }
 
 
-.cart_products {
+.cart__products {
     height: 70%;
     overflow-y: scroll;
 }
 
-.cart_products::-webkit-scrollbar {
+.cart__products::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     border-radius: 8px;
-    background-color: var(--containerColor);
+    background-color: var(--bodyColor);
 }
 
-.cart_products::-webkit-scrollbar-thumb {
+.cart__products::-webkit-scrollbar-thumb {
     background: var(--primaryColor);
     border-radius: 8px;
 }
 
-.card_product {
+.card__product {
     display: flex;
     flex-direction: row;
     padding: 1rem;
 }
 
-.card_product_img {
+.card__product-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -480,43 +472,45 @@ button {
 
 }
 
-.card_product_description {
+.card__product-img img {
+    width: 80px;
+}
+
+.card__product-description {
     margin-left: 1rem;
     display: flex;
     flex-direction: column;
     gap: .1rem;
 }
 
-.card_product_img img {
-    width: 80px;
-}
 
-.card_product_description_title {
+
+.card__product-description-title {
     color: var(--titleColor);
 }
 
-.card_product_description_stock {
+.card__product-description-stock {
     color: var(--textColorLight);
     font-size: 14px;
 }
 
-.card_product_description_stock span {
+.card__product-description-stock span {
     color: var(--primaryColor);
 }
 
-.card_product_description_subtotal {
+.card__product-description-subtotal {
     color: var(--primaryColor);
     font-weight: lighter;
 }
 
-.card_product_description_unit_total {
+.card__product-description-unit-total {
     display: flex;
     align-items: center;
     gap: .5rem;
     color: var(--titleColor);
 }
 
-.card_product_description_unit_total i {
+.card__product-description-unit-total i {
     cursor: pointer;
 
 }
@@ -571,28 +565,26 @@ button {
     background-color: var(--primaryColor);
 }
 
-.product_item {
+.product__item {
     position: relative;
 }
 
-.addCart {
-    position: absolute;
-    bottom: 100;
-    right: 0;
-}
-
 .addCart i {
+    position: absolute;
+    bottom: 4.5rem;
+    right: 2rem;
+    color: var(--titleColor);
     background-color: var(--bodyColor);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: background-color 0.5s;
-    box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
-    -webkit-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
+    box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
+    -webkit-box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
     -moz-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
 }
 
@@ -609,45 +601,45 @@ button {
     background-color: var(--cardColor);
 }
 
-.footer_content {
+.footer__content {
     padding: 4.5rem 0rem 4.5rem 2.8rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem
 }
 
-.footer_reference {
+.footer__reference {
     display: flex;
     flex-direction: column;
     gap: 1.2rem
 }
 
-.footer_reference h3 {
+.footer__reference h3 {
     color: var(--titleColor);
     font-size: 20px;
     font-weight: bold;
 }
 
-.footer_reference ul {
+.footer__reference ul {
     display: flex;
     flex-direction: column;
     gap: 1rem
 }
 
-.footer_reference li {
+.footer__reference li {
     color: var(--textColor);
 }
 
-.footer_reference a {
+.footer__reference a {
     transition: color 0.5s;
 }
 
 
-.footer_reference a:hover {
+.footer__reference a:hover {
     color: var(--titleColor);
 }
 
-.footer_reference:nth-child(4) ul {
+.footer__reference:nth-child(4) ul {
     font-size: 24px;
     display: flex;
     flex-direction: row;
@@ -688,7 +680,7 @@ button {
         color: var(--primaryColor);
     }
 
-    .icon_dashboard {
+    .icon__dashboard {
         display: none;
     }
 
@@ -696,36 +688,32 @@ button {
         flex-direction: row-reverse;
     }
 
-    .presentation_body {
+    .presentation__body {
         padding: 2rem;
         justify-content: center;
         align-items: start;
     }
 
-    .presentation_header_img {
+    .presentation__header-img {
         height: 78vh;
     }
 
 
-    .presentation_header_img img {
+    .presentation__header-img img {
         width: 340px;
     }
 
-    .products_filter {
+    .products__filter-controllers {
         margin-top: 10rem;
         flex-direction: row;
         gap: 0rem;
     }
 
-    .products_filter1 {
+    .product__filter-division {
         gap: 0rem;
     }
 
-    .products_filter2 {
-        gap: 0rem;
-    }
-
-    .products_items {
+    .products__items {
         padding: 0rem 4rem 4rem 4rem;
     }
 
@@ -737,7 +725,7 @@ button {
         padding: 2rem;
     }
 
-    .footer_content {
+    .footer__content {
         padding: 2rem;
         flex-direction: row;
         justify-content: center;
@@ -750,7 +738,7 @@ button {
         font-size: 1.4rem;
     }
 
-   /*  button {
+    /*  button {
         width: 60px;
         height: 40px;
         color: var(--titleColor);
