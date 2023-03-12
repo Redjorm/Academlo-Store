@@ -194,7 +194,7 @@ img {
     position: relative;
 }
 
-.products_in_cart {
+.products__cart {
     position: absolute;
     top: 12px;
     right: -5px;
@@ -397,6 +397,16 @@ button.active {
 }
 
 
+.product__name{
+    margin-top: 0.35rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.5s;
+}
+
+.product__name:hover{
+    color: var(--primaryColor);
+}
 
 
 /* todo<--------------------------------------- CART ---------------------------------------> */
@@ -519,7 +529,7 @@ button.active {
     color: var(--primaryColor);
 }
 
-.cart_total {
+.cart__total {
     padding: 1rem;
     height: 15%;
     display: flex;
@@ -527,7 +537,7 @@ button.active {
     gap: 1rem;
 }
 
-.cart_total_info {
+.cart__total-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -544,14 +554,14 @@ button.active {
     font-weight: 16px;
 }
 
-.cart_total_info_total {
+.cart__total-info-total {
     color: var(--titleColor);
     font-weight: bold;
 }
 
 .btn {
     width: 100%;
-    color: var(--bodyColor);
+    color: white;
     padding: 1rem;
     border: 0px;
     font-size: 18px;
@@ -591,6 +601,117 @@ button.active {
 .addCart i:hover {
     background-color: var(--primaryColor);
     color: var(--bodyColor);
+}
+
+
+.bxs-trash {
+    color: var(--titleColor);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: color 0.5s;
+}
+
+.bxs-trash:hover {
+    color: var(--primaryColor);
+}
+
+
+/* MODAL */
+.modal {
+    background-color: #00000090;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 1rem;
+    z-index: 6000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease-in-out,visibility .2s ease-in-out;
+}
+
+.show__modal {
+    opacity: 100;
+    visibility: visible;
+    transition: color .5s;
+    cursor: pointer
+}
+
+.modal__x{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.bx-x{
+    border-radius: 0rem 1rem 0rem 1rem;
+    background-color: var(--titleColor);
+    font-size: 2.4rem;
+    color: var(--bodyColor);
+    transition: color 0.6s;
+}
+
+.bx-x:hover{
+    color: var(--primaryColor);
+}
+
+.modal__item {
+    background-color: var(--containerColor);
+    border-radius: 1rem;
+    width: 400px;
+    height: 540px;
+    
+
+}
+
+
+
+.modal__item-img {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__item-img img {
+    width: 80%;
+}
+
+
+
+.modal__item-info {
+    background-color: var(--containerColor);
+    color: var(--titleColor);
+    height: 100px;
+    padding: 1rem;
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+
+
+.modal__name{
+    margin-top: 0.35rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: color 0.5s;
+    font-weight: bold;
+}
+
+.modal__description{
+    color: var(--textColorLight);
+    margin-top: .2rem;
+    font-size: .88rem;
+    width: 100%;
+}
+
+.modal__info{
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
 }
 
 
@@ -659,7 +780,7 @@ button.active {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 1rem;  
+    padding: 1rem;
     gap: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
@@ -744,10 +865,7 @@ button.active {
         gap: 8rem;
     }
 
-    .footer__autor{
+    .footer__autor {
         flex-direction: row;
     }
-
-    
-
 }

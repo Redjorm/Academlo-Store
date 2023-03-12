@@ -112,7 +112,7 @@ function printProducts (db) {
                 : '<span class="sold__out">SoldOut</span>'
             }
             </h3> 
-            <p>${product.name}</p>
+            <p class="product__name" id='${product.id}'>${product.name}</p>
         </div>
     </div>`
   }
@@ -268,12 +268,12 @@ function filter () {
 
 function cartTotal (db) {
   const cartTotalInfoItemsHTML = document.querySelector(
-    '.cart_total_info_items'
+    '.cart__total-info-items'
   )
   const cartTotalInfoTotalHTML = document.querySelector(
-    '.cart_total_info_total'
+    '.cart__total-info-total'
   )
-  const productsInCart = document.querySelector('.products_in_cart')
+  const productsInCart = document.querySelector('.products__cart')
 
   let totalProducts = 0
   let amountProdutcs = 0
@@ -287,6 +287,30 @@ function cartTotal (db) {
   cartTotalInfoItemsHTML.textContent = amountProdutcs + ' Units'
   productsInCart.textContent = amountProdutcs
   cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
+}
+
+function deleteAll(db){
+  const trashAllHTML = document.querySelector('.bxs-trash')
+
+  trashAllHTML.addEventListener('click', function() {
+    if (Object.values(db.cart).length === 0) {
+      alert('No tiene productos que eliminar.')
+    } else {
+      const response = confirm(
+        '¿Usted desea eliminar todos los productos de su carrito?'
+      )
+
+      if (!response) return
+      db.cart = {}
+      window.localStorage.setItem('cart', JSON.stringify(db.cart))
+
+      printProducts(db)
+      printProductsInCart(db)
+      cartTotal(db)
+
+      location.reload()
+    }
+  })
 }
 
 function buy (db) {
@@ -332,6 +356,61 @@ function buy (db) {
   })
 }
 
+function modal (db) {
+  const productModalHTML = document.querySelector('.products__items')
+  const modalHTML = document.querySelector('.modal')
+
+  productModalHTML.addEventListener('click', function(e){
+    if (e.target.classList.contains('product__name')) {
+      const id = Number(e.target.id)
+      let html = ''
+
+      for (const product of db.products) {
+        if (id === product.id) {
+          html += `
+        <div class="modal__item">
+            <div class="modal__x">
+              <i class='bx bx-x'></i>
+            </div>
+            <div class="modal__item-img">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+              
+    
+            <div class="modal__item-info">
+              <p class="modal__name" >${product.name}</p>
+              <p class="modal__description">${product.description}</p>
+            
+              <div class="modal__info">
+                <h3>$ ${product.price.toFixed(2)} 
+                ${
+                  product.quantity
+                    ? `<span> Stock: ${product.quantity} </span>`
+                    : '<span class="sold__out">SoldOut</span>'
+                }
+                </h3> 
+                <p>Stock: ${product.quantity}</p>
+              </div>
+              
+            </div>
+        </div>` 
+        break
+        }
+      }
+      
+      modalHTML.classList.toggle('show__modal')
+      modalHTML.innerHTML = html 
+
+      modalHTML.addEventListener('click', function(e){
+        if (e.target.classList.contains('bx-x')) {
+          modalHTML.classList.remove('show__modal')
+        }
+      })
+    }
+  })
+}
+
+
 async function main () {
   preloader()
 
@@ -361,10 +440,14 @@ async function main () {
   operationsInCart(db)
 
   cartTotal(db)
-
+  
+  deleteAll(db)
+  
   buy(db)
 
   filter()
+
+  modal(db)
 }
 
 main()
