@@ -378,7 +378,7 @@ function modal (db) {
               
     
             <div class="modal__item-info">
-              <p class="modal__name" >${product.name}</p>
+              <p class="modal__name" >${product.name} - ${product.category}</p>
               <p class="modal__description">${product.description}</p>
             
               <div class="modal__info">
