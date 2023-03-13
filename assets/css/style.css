@@ -408,6 +408,36 @@ button.active {
     color: var(--primaryColor);
 }
 
+.product__item {
+    position: relative;
+}
+
+.addCart i {
+    position: absolute;
+    bottom: 4.5rem;
+    right: 2rem;
+    color: var(--titleColor);
+    background-color: var(--bodyColor);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
+    -webkit-box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
+    -moz-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
+}
+
+.addCart i:hover {
+    background-color: var(--primaryColor);
+    color: var(--bodyColor);
+}
+
+
+
 
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
@@ -573,34 +603,6 @@ button.active {
 
 .btn:hover {
     background-color: var(--primaryColor);
-}
-
-.product__item {
-    position: relative;
-}
-
-.addCart i {
-    position: absolute;
-    bottom: 4.5rem;
-    right: 2rem;
-    color: var(--titleColor);
-    background-color: var(--bodyColor);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.5s;
-    box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
-    -webkit-box-shadow: 2px 0px 23px -6px rgb(0 0 0 / 32%);
-    -moz-box-shadow: 2px 0px 23px -6px rgba(0, 0, 0, 0.32);
-}
-
-.addCart i:hover {
-    background-color: var(--primaryColor);
-    color: var(--bodyColor);
 }
 
 
