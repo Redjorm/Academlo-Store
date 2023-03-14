@@ -44,11 +44,16 @@
                     <span>STORE</span>
                 </div>
                 <ul class="navbar__ul">
-                    <li class="home"> <a href="">Home</a> </li>
-                    <li> <a href="#container">Products</a> </li>
+                    <li class="home"> <a href="#home">Home</a> </li>
+                    <li> <a href="#products">Products</a> </li>
                 </ul>
                 <div class="navbar__icon">
-                    <i class="bx bx-moon"></i>
+                    <div class="navbar__icon-moon">
+                        <i class="bx bx-moon"> </i>
+                    </div>
+                    <div class="navbar__icon-sun logo__darkmode">
+                        <i class='bx bxs-sun'></i>
+                    </div>
                     <i class="bx bx-shopping-bag" id="iconShowCart">
                         <div class="products__cart"></div>
                     </i>
@@ -59,7 +64,7 @@
             </nav>
         </header>
 
-        <main class="main">
+        <main class="main" id="home">
             <div class="presentation">
                 <div class="presentation__header">
                     <div class="vacio"></div>
@@ -79,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="products">
+            <div class="products" id="products">
                 <div class="products__filter">
                     <div class="products__filter-controllers">
                         <div class="product__filter-division">
@@ -114,11 +119,13 @@
                     </div>
                 </div>
 
-                <div class="products__items" id="Container"></div>
+                <div class="products__items" id="productsItems"></div>
             </div>
 
             <div class="cart">
-                <div class="icon__close"><i class='bx bx-window-close'></i></div>
+                <div class="icon__close"> 
+                    <p class="cart__title"><i class='bx bx-cart-alt'></i> Carrito</p> 
+                    <i class='bx bx-window-close'></i></div>
                 <div class="cart__products">
 
                 </div>
@@ -129,7 +136,7 @@
                         <p class="cart__total-info-total">$ 0.00</p>
                     </div>
 
-                    <button class="btn">Comprar</button>
+                    <button class="btn"><i class='bx bxs-credit-card'></i> Comprar</button>
                 </div>
             </div>
         </main>
@@ -142,36 +149,36 @@
                 <div class="footer__reference">
                     <h3>Our information</h3>
                     <ul>
-                        <li><a href="">Toluca - MEXICO</a></li>
+                        <li><a href="#">Toluca - MEXICO</a></li>
                     </ul>
                 </div>
                 <div class="footer__reference">
                     <h3>About Us</h3>
                     <ul>
-                        <li><a href="">Support Center</a></li>
-                        <li><a href="">Customer Support</a></li>
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">Copy Right</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Customer Support</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Copy Right</a></li>
                     </ul>
                 </div>
                 <div class="footer__reference">
                     <h3>Product</h3>
                     <ul>
-                        <li><a href="#container">Hoodies</a></li>
-                        <li><a href="#container">Shirts</a></li>
-                        <li><a href="#container">Sweatshirts</a></li>
+                        <li><a href="#products">Hoodies</a></li>
+                        <li><a href="#products">Shirts</a></li>
+                        <li><a href="#products">Sweatshirts</a></li>
                     </ul>
                 </div>
                 <div class="footer__reference">
                     <h3>Social</h3>
                     <ul>
-                        <li><a href="#">
+                        <li><a href="https://www.facebook.com/academlo" target="_blank">
                                 <i class="bx bxl-facebook"></i>
                             </a></li>
-                        <li><a href="#">
+                        <li><a href="https://twitter.com/AcademloHQ" target="_blank">
                                 <i class="bx bxl-twitter"></i>
                             </a></li>
-                        <li><a href="#">
+                        <li><a href="https://www.instagram.com/academlohq/" target="_blank">
                                 <i class="bx bxl-instagram"></i>
                         </a></li>
                     </ul>

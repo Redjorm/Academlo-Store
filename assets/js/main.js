@@ -7,13 +7,28 @@ function preloader () {
 }
 
 function darkMode () {
+  const navbarIconMoonHTML = document.querySelector('.navbar__icon-moon')
+  const navbarIconSunHTML = document.querySelector('.navbar__icon-sun')
   const moonIconHTML = document.querySelector('.bx-moon')
+  const sunIconHTML = document.querySelector('.bxs-sun')
   const bodyHTML = document.querySelector('body')
 
   moonIconHTML.addEventListener('click', function () {
     bodyHTML.classList.toggle('dark-theme')
+    navbarIconMoonHTML.classList.toggle('logo__darkmode')
+    navbarIconSunHTML.classList.toggle('logo__darkmode')
+  
+    if (document.body.classList.contains('dark-theme')) {
+      localStorage.setItem('dark-mode', 'true')
+    } else {
+      localStorage.setItem('dark-mode', 'false')
+    }
+  })
 
-    console.log(document.body.classList.contains('dark-theme'))
+  sunIconHTML.addEventListener('click', function () {
+    bodyHTML.classList.toggle('dark-theme')
+    navbarIconMoonHTML.classList.toggle('logo__darkmode')
+    navbarIconSunHTML.classList.toggle('logo__darkmode')
 
     if (document.body.classList.contains('dark-theme')) {
       localStorage.setItem('dark-mode', 'true')
@@ -25,10 +40,17 @@ function darkMode () {
 
 function saveDarkMode () {
   const bodyHTML = document.querySelector('body')
+  const navbarIconMoonHTML = document.querySelector('.navbar__icon-moon')
+  const navbarIconSunHTML = document.querySelector('.navbar__icon-sun')
+
   if (localStorage.getItem('dark-mode') === 'true') {
     bodyHTML.classList.add('dark-theme')
+    navbarIconMoonHTML.classList.add('logo__darkmode')
+    navbarIconSunHTML.classList.remove('logo__darkmode')
   } else {
     bodyHTML.classList.remove('dark-theme')
+    navbarIconMoonHTML.classList.remove('logo__darkmode')
+    navbarIconSunHTML.classList.add('logo__darkmode')
   }
 }
 
@@ -48,9 +70,9 @@ function menu () {
 
   window.addEventListener('scroll', function () {
     if (window.scrollY > 50) {
-      headerHTML.classList.add('header_active')
+      headerHTML.classList.add('header__active')
     } else {
-      headerHTML.classList.remove('header_active')
+      headerHTML.classList.remove('header__active')
     }
   })
 }
@@ -105,7 +127,7 @@ function printProducts (db) {
           }
 
         <div class="product__item-info">
-            <h3>$ ${product.price.toFixed(2)} 
+            <h3>$${product.price.toFixed(2)} 
             ${
               product.quantity
                 ? `<span> Stock: ${product.quantity} </span>`
@@ -238,19 +260,19 @@ function operationsInCart (db) {
 
 function filter () {
   $(function () {
-    $('#Container').on('mixLoad', function () {
+    $('#productsItems').on('mixLoad', function () {
       console.log('[event-handler] MixItUp Loaded')
     })
 
-    $('#Container').on('mixStart', function () {
+    $('#productsItems').on('mixStart', function () {
       console.log('[event-handler] Animation Started')
     })
 
-    $('#Container').on('mixEnd', function () {
+    $('#productsItems').on('mixEnd', function () {
       console.log('[event-handler] Animation Ended')
     })
 
-    $('#Container').mixItUp({
+    $('#productsItems').mixItUp({
       callbacks: {
         onMixLoad: function () {
           console.log('[callback] MixItUp Loaded')

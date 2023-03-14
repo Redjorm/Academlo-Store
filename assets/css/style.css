@@ -1,28 +1,26 @@
 @import"https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap";
 
 :root {
-    --primaryColor: hsl(354, 78%, 60%);
-    --buttonColor: hsl(0, 0%, 17%);
-    --buttonColorHover: hsl(0, 0%, 21%);
-    --cardColor: hsl(0, 0%, 90%);
-    --titleColor: hsl(0, 0%, 15%);
-    --textColor: hsl(0, 0%, 35%);
-    --textColorLight: hsl(0, 0%, 55%);
-    --bodyColor: hsl(206, 4%, 97%);
-    --containerColor: hsl(0, 0%, 100%);
-    --borderColor: hsl(0, 0%, 94%);
+    --primaryColor: #e94959;
+    --buttonColor: #2b2b2b;
+    --buttonColorHover: #363636;
+    --cardColor: #e6e6e6;
+    --titleColor: #262626;
+    --textColor: #595959;
+    --textColorLight: #8c8c8c;
+    --bodyColor: #f7f7f8;
+    --containerColor: #ffffff;
 }
 
 body.dark-theme {
-    --primaryColor: hsl(182, 53%, 74%);
-    --buttonColor: hsl(246, 16%, 12%);
-    --buttonColorHover: hsl(0, 0%, 28%);
-    --cardColor: hsla(246, 16%, 5%);
-    --titleColor: hsl(0, 0%, 95%);
-    --textColor: hsl(0, 0%, 75%);
-    --bodyColor: hsl(249, 19%, 14%);
-    --containerColor: hsl(246, 16%, 12%);
-    --borderColor: hsl(0, 0%, 20%)
+    --primaryColor: #9adde0;
+    --buttonColor: #1b1a23;
+    --buttonColorHover: #474747;
+    --cardColor: #0b0b0f;
+    --titleColor: #f2f2f2;
+    --textColor: #bfbfbf;
+    --bodyColor: #1f1d2a;
+    --containerColor: #1b1a23;
 }
 
 body::-webkit-scrollbar {
@@ -112,6 +110,15 @@ img {
     transition: background-color 0.5s, height 0.5s, padding 0.5s;
 }
 
+.header__active {
+    background-color: var(--bodyColor);
+    height: 60px;
+    padding-top: 0.5rem;
+    box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
+    -webkit-box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
+    -moz-box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
+}
+
 .navbar {
     max-width: 1200px;
     margin: auto;
@@ -133,6 +140,8 @@ img {
     color: var(--titleColor);
 }
 
+
+
 .logo svg {
     width: 40px;
     fill: var(--primaryColor)
@@ -151,17 +160,6 @@ img {
     width: 100%;
     height: calc(100% - 40px);
     transition: left 0.5s;
-}
-
-
-
-.header_active {
-    background-color: var(--bodyColor);
-    height: 60px;
-    padding-top: 0.5rem;
-    box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
-    -webkit-box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
-    -moz-box-shadow: 2px 12px 8px -3px rgba(0, 0, 0, 0.11);
 }
 
 .navbar_ul_show {
@@ -187,7 +185,8 @@ img {
     color: var(--titleColor);
     user-select: none;
     display: flex;
-    gap: .5rem
+    gap: .5rem;
+    transition: display 0.5s;
 }
 
 #iconShowCart {
@@ -209,6 +208,13 @@ img {
     border-radius: 50%;
     font-weight: bold
 }
+
+.logo__darkmode{
+    display: none;
+}
+
+
+
 
 /* *<---------------------------------------> MAIN <---------------------------------------> */
 .main {
@@ -457,14 +463,17 @@ button.active {
     z-index: 6000;
 }
 
+
+
 .cart_show {
     right: 0px;
 
 }
 
 .icon__close {
+    padding: 1rem;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
@@ -573,7 +582,7 @@ button.active {
     align-items: center;
 }
 
-.cart_total_info_items {
+.cart__total-info-items {
     color: var(--textColorLight);
     font-size: 12px;
 }
