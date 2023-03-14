@@ -17,7 +17,7 @@ function darkMode () {
     bodyHTML.classList.toggle('dark-theme')
     navbarIconMoonHTML.classList.toggle('logo__darkmode')
     navbarIconSunHTML.classList.toggle('logo__darkmode')
-  
+
     if (document.body.classList.contains('dark-theme')) {
       localStorage.setItem('dark-mode', 'true')
     } else {
@@ -311,10 +311,10 @@ function cartTotal (db) {
   cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
 }
 
-function deleteAll(db){
+function deleteAll (db) {
   const trashAllHTML = document.querySelector('.bxs-trash')
 
-  trashAllHTML.addEventListener('click', function() {
+  trashAllHTML.addEventListener('click', function () {
     if (Object.values(db.cart).length === 0) {
       alert('No tiene productos que eliminar.')
     } else {
@@ -382,7 +382,7 @@ function modal (db) {
   const productModalHTML = document.querySelector('.products__items')
   const modalHTML = document.querySelector('.modal')
 
-  productModalHTML.addEventListener('click', function(e){
+  productModalHTML.addEventListener('click', function (e) {
     if (e.target.classList.contains('product__name')) {
       const id = Number(e.target.id)
       let html = ''
@@ -415,15 +415,15 @@ function modal (db) {
               </div>
               
             </div>
-        </div>` 
-        break
+        </div>`
+          break
         }
       }
-      
-      modalHTML.classList.toggle('show__modal')
-      modalHTML.innerHTML = html 
 
-      modalHTML.addEventListener('click', function(e){
+      modalHTML.classList.toggle('show__modal')
+      modalHTML.innerHTML = html
+
+      modalHTML.addEventListener('click', function (e) {
         if (e.target.classList.contains('bx-x')) {
           modalHTML.classList.remove('show__modal')
         }
@@ -431,7 +431,6 @@ function modal (db) {
     }
   })
 }
-
 
 async function main () {
   preloader()
@@ -462,9 +461,9 @@ async function main () {
   operationsInCart(db)
 
   cartTotal(db)
-  
+
   deleteAll(db)
-  
+
   buy(db)
 
   filter()
