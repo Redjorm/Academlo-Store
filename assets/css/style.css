@@ -209,7 +209,7 @@ img {
     font-weight: bold
 }
 
-.logo__darkmode{
+.logo__darkmode {
     display: none;
 }
 
@@ -369,6 +369,10 @@ button.active {
 
 .product__item-img {
     padding: 0.5rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
 }
 
@@ -674,7 +678,7 @@ button.active {
     background-color: var(--containerColor);
     border-radius: 1rem;
     width: 400px;
-    height: 540px;
+    height: 550px;
 
 
 }
