@@ -437,45 +437,42 @@ function modal (db) {
 }
 
 function tooltip () {
-  
-    console.log(screen.width);
-    if (screen.width <= 767) {
-      
-    } else {
-      tippy('.bx-plus', {
-        content: 'Añadir al carrito'
-      })
-    
-      tippy('.bx-shopping-bag', {
-        content: 'Carrito'
-      })
-    
-      tippy('.bx-window-close', {
-        content: 'Cerrar carrito'
-      })
-    
-      
-      tippy('.bx-trash', {
-        content: 'Eliminar producto'
-      })
-    
-      tippy('.bxs-trash', {
-        content: 'Eliminar todos los productos'
-      })
-    
-      tippy('.product__name', { 
-        placement: 'bottom',
-        content: 'Ver descripción del producto'
-      })
-    }
-  
-  
-  console.log(screen.width);
-  console.log(screen.height);
+  let navegador = navigator.userAgent
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/webOS/i) ||
+    navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/i) ||
+    navigator.userAgent.match(/iPod/i) ||
+    navigator.userAgent.match(/BlackBerry/i) ||
+    navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    tippy('.bx-plus', {
+      content: 'Añadir al carrito'
+    })
 
-  
+    tippy('.bx-shopping-bag', {
+      content: 'Carrito'
+    })
 
-  
+    tippy('.bx-window-close', {
+      content: 'Cerrar carrito'
+    })
+
+    tippy('.bx-trash', {
+      content: 'Eliminar producto'
+    })
+
+    tippy('.bxs-trash', {
+      content: 'Eliminar todos los productos'
+    })
+
+    tippy('.product__name', {
+      placement: 'bottom',
+      content: 'Ver descripción del producto'
+    })
+  } 
+
 }
 
 async function main () {
