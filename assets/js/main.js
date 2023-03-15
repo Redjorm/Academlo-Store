@@ -194,12 +194,8 @@ function printProductsInCart (db) {
           </div>
           <div class="card__product-description">
             <h3 class="card__product-description-title">${name}</h3>
-            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(
-      2
-    )}</span> </p>
-            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(
-              2
-            )}</p>
+            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(2)}</span> </p>
+            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(2)}</p>
             <div class="card__product-description-unit-total" id="${id}">
               <i class='bx bx-minus-circle' ></i>
               <p>${amount} units</p>
@@ -310,6 +306,8 @@ function cartTotal (db) {
     amountProdutcs += amount
   }
 
+  
+  
   cartTotalInfoItemsHTML.textContent = amountProdutcs + ' Units'
   productsInCart.textContent = amountProdutcs
   cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
@@ -436,45 +434,6 @@ function modal (db) {
   })
 }
 
-function tooltip () {
-  let navegador = navigator.userAgent
-  if (
-    navigator.userAgent.match(/Android/i) ||
-    navigator.userAgent.match(/webOS/i) ||
-    navigator.userAgent.match(/iPhone/i) ||
-    navigator.userAgent.match(/iPad/i) ||
-    navigator.userAgent.match(/iPod/i) ||
-    navigator.userAgent.match(/BlackBerry/i) ||
-    navigator.userAgent.match(/Windows Phone/i)
-  ) {
-    tippy('.bx-plus', {
-      content: 'Añadir al carrito'
-    })
-
-    tippy('.bx-shopping-bag', {
-      content: 'Carrito'
-    })
-
-    tippy('.bx-window-close', {
-      content: 'Cerrar carrito'
-    })
-
-    tippy('.bx-trash', {
-      content: 'Eliminar producto'
-    })
-
-    tippy('.bxs-trash', {
-      content: 'Eliminar todos los productos'
-    })
-
-    tippy('.product__name', {
-      placement: 'bottom',
-      content: 'Ver descripción del producto'
-    })
-  } 
-
-}
-
 async function main () {
   preloader()
 
@@ -512,8 +471,6 @@ async function main () {
   filter()
 
   modal(db)
-
-  tooltip()
 }
 
 main()
