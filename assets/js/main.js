@@ -194,8 +194,12 @@ function printProductsInCart (db) {
           </div>
           <div class="card__product-description">
             <h3 class="card__product-description-title">${name}</h3>
-            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(2)}</span> </p>
-            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(2)}</p>
+            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(
+      2
+    )}</span> </p>
+            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(
+              2
+            )}</p>
             <div class="card__product-description-unit-total" id="${id}">
               <i class='bx bx-minus-circle' ></i>
               <p>${amount} units</p>
@@ -432,6 +436,48 @@ function modal (db) {
   })
 }
 
+function tooltip () {
+  
+    console.log(screen.width);
+    if (screen.width <= 767) {
+      
+    } else {
+      tippy('.bx-plus', {
+        content: 'Añadir al carrito'
+      })
+    
+      tippy('.bx-shopping-bag', {
+        content: 'Carrito'
+      })
+    
+      tippy('.bx-window-close', {
+        content: 'Cerrar carrito'
+      })
+    
+      
+      tippy('.bx-trash', {
+        content: 'Eliminar producto'
+      })
+    
+      tippy('.bxs-trash', {
+        content: 'Eliminar todos los productos'
+      })
+    
+      tippy('.product__name', { 
+        placement: 'bottom',
+        content: 'Ver descripción del producto'
+      })
+    }
+  
+  
+  console.log(screen.width);
+  console.log(screen.height);
+
+  
+
+  
+}
+
 async function main () {
   preloader()
 
@@ -469,6 +515,8 @@ async function main () {
   filter()
 
   modal(db)
+
+  tooltip()
 }
 
 main()
