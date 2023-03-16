@@ -102,6 +102,7 @@ async function getProducts () {
     const res = await data.json()
 
     window.localStorage.setItem('products', JSON.stringify(res))
+    window.localStorage.setItem('productsell', '[]')
 
     return res
   } catch (error) {
@@ -194,8 +195,12 @@ function printProductsInCart (db) {
           </div>
           <div class="card__product-description">
             <h3 class="card__product-description-title">${name}</h3>
-            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(2)}</span> </p>
-            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(2)}</p>
+            <p class="card__product-description-stock">Stock:${quantity} | <span>$${price.toFixed(
+      2
+    )}</span> </p>
+            <p class="card__product-description-subtotal">Subtotal: $${total.toFixed(
+              2
+            )}</p>
             <div class="card__product-description-unit-total" id="${id}">
               <i class='bx bx-minus-circle' ></i>
               <p>${amount} units</p>
@@ -306,8 +311,6 @@ function cartTotal (db) {
     amountProdutcs += amount
   }
 
-  
-  
   cartTotalInfoItemsHTML.textContent = amountProdutcs + ' Units'
   productsInCart.textContent = amountProdutcs
   cartTotalInfoTotalHTML.textContent = '$' + totalProducts.toFixed(2)
@@ -359,6 +362,16 @@ function buy (db) {
             ...product,
             quantity: product.quantity - productCart.amount
           })
+
+          if (db.productsell[product.id]) {
+            db.productsell[product.id].sell =
+              db.productsell[product.id].sell + productCart.amount
+          } else {
+            db.productsell[product.id] = {
+              ...product,
+              sell: productCart.amount
+            }
+          }
         } else {
           currentProducts.push(product)
         }
@@ -369,7 +382,7 @@ function buy (db) {
 
       window.localStorage.setItem('products', JSON.stringify(db.products))
       window.localStorage.setItem('cart', JSON.stringify(db.cart))
-
+      window.localStorage.setItem('productsell', JSON.stringify(db.productsell))
       location.reload()
 
       printProducts(db)
@@ -434,6 +447,118 @@ function modal (db) {
   })
 }
 
+function tooltip () {
+  tippy('.bx-plus', {
+    touch: false,
+    animation: 'scale',
+    content: 'Agregar al carrito'
+  })
+
+  tippy('.bx-shopping-bag', {
+    touch: false,
+    animation: 'scale',
+    content: 'Carrito'
+  })
+
+  tippy('.product__name', {
+    placement: 'bottom',
+    touch: false,
+    animation: 'scale',
+    content: 'Ver descripción'
+  })
+
+  tippy('.bx-window-close', {
+    touch: false,
+    animation: 'scale',
+    content: 'Cerrar carrito'
+  })
+
+  tippy('.bx-trash', {
+    touch: false,
+    animation: 'scale',
+    content: 'Quitar producto del carrito'
+  })
+
+  tippy('.bxs-trash', {
+    touch: false,
+    animation: 'scale',
+    content: 'Quitar todos los productos del carrito'
+  })
+}
+
+function bestSellingProducts (db) {
+  const bestbuy = document.querySelector('.bestbuy')
+
+  let products = db.productsell
+  if (products.length >= 4) {
+    bestbuy.innerHTML = `
+    <h2> Los 3 productos más vendidos </h3>
+    <div class="slider">
+    
+    <input type="radio" name="toggle" id="btn-1" checked>
+    <input type="radio" name="toggle" id="btn-2">
+    <input type="radio" name="toggle" id="btn-3">
+  
+    <div class="slider-controls">
+        <label for="btn-1"></label>
+        <label for="btn-2"></label>
+        <label for="btn-3"></label>
+    </div>
+  
+    <ul class="slides">
+    </ul>
+  </div>`
+
+    printBestBuy(db)
+  }
+}
+
+function printBestBuy (db) {
+  const bestbuy = document.querySelector('.slides')
+
+  let products = db.productsell
+  let html = ''
+  let prudctsreduce = []
+
+  for (const product of products) {
+    if (product) {
+      let productName = product.name
+      let productDescription = product.description
+      let productPrice = product.price
+      let productImg = product.image
+      let productSell = product.sell
+      prudctsreduce.push({
+        productName,
+        productDescription,
+        productPrice,
+        productImg,
+        productSell
+      })
+    }
+  }
+
+  let orderProducts = prudctsreduce.sort(
+    (a, b) => b.productSell - a.productSell
+  )
+
+  for (let i = 0; i <= 2; i++) {
+    html += `
+    
+    <li class="slide">
+      <div class="slide-content">
+        <h3 class="slide-title">${orderProducts[i].productName} - Precio: $${orderProducts[i].productPrice}</h3>
+        <p class="slide-text">${orderProducts[i].productDescription}</p>
+      </div>
+      <p class="slide-image">
+        <img src="${orderProducts[i].productImg}" alt="stuff" width="320" height="240">
+      </p>
+    </li>
+    `
+  }
+
+  bestbuy.innerHTML = html
+}
+
 async function main () {
   preloader()
 
@@ -451,7 +576,9 @@ async function main () {
     products:
       JSON.parse(window.localStorage.getItem('products')) ||
       (await getProducts()),
-    cart: JSON.parse(window.localStorage.getItem('cart')) || {}
+    cart: JSON.parse(window.localStorage.getItem('cart')) || {},
+
+    productsell: JSON.parse(window.localStorage.getItem('productsell')) || {}
   }
 
   printProducts(db)
@@ -471,6 +598,10 @@ async function main () {
   filter()
 
   modal(db)
+
+  tooltip()
+
+  bestSellingProducts(db)
 }
 
 main()

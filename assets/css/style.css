@@ -630,6 +630,163 @@ button.active {
     color: var(--primaryColor);
 }
 
+/* Slider */
+.bestbuy{
+    display: none;
+    transition: display 0.5s;
+}
+
+
+.slider {
+    position: relative;
+    width: 740px;
+    height: 300px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 200px;
+    text-align: center;
+    transform: translatex(-50%);
+    z-index: 1000;
+    list-style: none;
+    text-align: center;
+}
+
+.slider input[type="radio"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-controls label {
+    display: inline-block;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--titleColor);
+    transition: background-color 0.2s linear;
+}
+
+#btn-1:checked~.slider-controls label[for="btn-1"] {
+    background-color: var(--primaryColor);
+}
+
+#btn-2:checked~.slider-controls label[for="btn-2"] {
+    background-color: var(--primaryColor);
+}
+
+#btn-3:checked~.slider-controls label[for="btn-3"] {
+    background-color: var(--primaryColor);
+}
+
+/* SLIDES */
+
+.slides {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.slide {
+    background-color: var(--cardColor);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translatex(-100%);
+    transition: transform 250ms linear;
+}
+
+.slide-content {
+    width: 420px;
+}
+
+.slide-title {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: var(--titleColor);
+}
+
+.slide-text {
+    margin-bottom: 20px;
+    text-align: justify;
+    color: var(--titleColor);
+}
+
+
+.slide-image img {
+    max-width: 100%;
+}
+
+/* Slide animations */
+#btn-1:checked~.slides .slide:nth-child(1) {
+    transform: translatex(0);
+    opacity: 1;
+}
+
+#btn-2:checked~.slides .slide:nth-child(2) {
+    transform: translatex(0);
+    opacity: 1;
+}
+
+#btn-3:checked~.slides .slide:nth-child(3) {
+    transform: translatex(0);
+    opacity: 1;
+}
+
+#btn-1:not(:checked)~.slides .slide:nth-child(1) {
+    animation-name: swap-out;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+}
+
+#btn-2:not(:checked)~.slides .slide:nth-child(2) {
+    animation-name: swap-out;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+}
+
+#btn-3:not(:checked)~.slides .slide:nth-child(3) {
+    animation-name: swap-out;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+}
+
+@keyframes swap-out {
+    0% {
+        transform: translatex(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translatex(50%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translatex(100%);
+    }
+}
+
+
+
 
 /* MODAL */
 .modal {
@@ -914,8 +1071,22 @@ button.active {
         width: 340px;
     }
 
+    .bestbuy{
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+    }
+
+    .bestbuy h2{
+        text-align: center;
+        color: var(--primaryColor);
+    }
+
     .products__filter-controllers {
-        margin-top: 10rem;
+        margin-top: 2rem;
         flex-direction: row;
         gap: 0rem;
     }
@@ -941,7 +1112,7 @@ button.active {
         flex-direction: row;
         justify-content: center;
         align-items: start;
-        gap: 8rem;
+        gap: 6rem;
     }
 
     .footer__autor {
