@@ -452,7 +452,7 @@ button.active {
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
     border-radius: 1rem 0 0rem 0;
-    height: 62vh;
+    height: 100vh;
     width: 100%;
     background-color: var(--bodyColor);
     position: fixed;
