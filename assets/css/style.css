@@ -1122,16 +1122,6 @@ button.active {
 }
 
 
-@media (max-height: 800px) {
-    .cart{
-        height: 100vh;
-        padding: 0rem;
-    }
-
-    .cart__products {
-        height: 60%;
-    }
-}
 
 
 @media (max-height: 420px) {
