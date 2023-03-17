@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     border-radius: 8px;
-    background-color: var(--containerColor);
+    background-color: var(--cardColor);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -451,19 +451,20 @@ button.active {
 
 /* todo<--------------------------------------- CART ---------------------------------------> */
 .cart {
-    height: 100vh;
+    border-radius: 1rem 0 0rem 0;
+    height: 62vh;
     width: 100%;
     background-color: var(--bodyColor);
     position: fixed;
-    top: 0px;
+    bottom: 0px;
     right: -200%;
-    padding: 1rem;
+    padding: rem;
     display: flex;
     flex-direction: column;
-    transition: right 0.5s;
-    box-shadow: -10px 3px 19px -6px rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: -10px 3px 19px -6px rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: -10px 3px 19px -6px rgba(0, 0, 0, 0.19);
+    transition: right 0.65s;
+    -webkit-box-shadow: -4px -2px 14px 1px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: -4px -2px 14px 1px rgba(0, 0, 0, 0.35);
+    box-shadow: -4px -2px 14px 1px rgba(0, 0, 0, 0.35);
     z-index: 6000;
 }
 
@@ -631,7 +632,7 @@ button.active {
 }
 
 /* Slider */
-.bestbuy{
+.bestbuy {
     display: none;
     transition: display 0.5s;
 }
@@ -1071,7 +1072,7 @@ button.active {
         width: 340px;
     }
 
-    .bestbuy{
+    .bestbuy {
         margin-top: 2rem;
         display: flex;
         flex-direction: column;
@@ -1080,7 +1081,7 @@ button.active {
         max-width: 1200px;
     }
 
-    .bestbuy h2{
+    .bestbuy h2 {
         text-align: center;
         color: var(--primaryColor);
     }
@@ -1117,5 +1118,29 @@ button.active {
 
     .footer__autor {
         width: 768px;
+    }
+}
+
+
+@media (max-height: 800px) {
+    .cart{
+        height: 100vh;
+        padding: 0rem;
+    }
+
+    .cart__products {
+        height: 60%;
+    }
+}
+
+
+@media (max-height: 420px) {
+    .cart{
+        height: 100vh;
+        padding: 0rem;
+    }
+
+    .cart__products {
+        height: 36%;
     }
 }
