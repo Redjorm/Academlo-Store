@@ -456,7 +456,7 @@ button.active {
     width: 100%;
     background-color: var(--bodyColor);
     position: fixed;
-    bottom: 0px;
+    top: 0px;
     right: -200%;
     padding: rem;
     display: flex;
@@ -1118,19 +1118,5 @@ button.active {
 
     .footer__autor {
         width: 768px;
-    }
-}
-
-
-
-
-@media (max-height: 420px) {
-    .cart{
-        height: 100vh;
-        padding: 0rem;
-    }
-
-    .cart__products {
-        height: 36%;
     }
 }
